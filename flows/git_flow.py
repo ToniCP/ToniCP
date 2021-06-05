@@ -20,7 +20,7 @@ def say_hello():
 
 
 name_of_flow = os.getenv('NAME_OF_FLOW')
-with Flow(name_of_flow) as flow:
+with Flow('git_flow') as flow:
     say_hello()
 
 flow.storage = GitHub(
