@@ -5,6 +5,12 @@ from prefect import task, Flow
 from prefect.storage import GitHub
 # pip install python-dotenv
 from prefect.run_configs import LocalRun
+from prefect.client.secrets import Secret
+from dotenv import load_dotenv
+# pip install python-decouple
+from decouple import config
+
+#load_dotenv()
 
 
 @task
@@ -15,13 +21,13 @@ def say_hello():
     logger.info("Accepted credentials.")
 
 
-name_of_flow = os.environ['NAME_OF_FLOW']
-with Flow( name_of_flow ) as flow:
+NAME_OF_FLOW = config('NAME_OF_FLOW')
+with Flow(config('NAME_OF_FLOW')) as flow:
     say_hello()
 
 flow.storage = GitHub(
-    repo=os.environ['REPOSITORY'],
-    path=os.environ['REPOSITORY_PATH']
+    repo=config('REPOSITORY'),
+    path=config('REPOSITORY_PATH')
 )
 
 flow.run_config = LocalRun(labels=["test"])
