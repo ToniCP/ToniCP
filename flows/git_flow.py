@@ -22,7 +22,7 @@ def say_hello():
 
 
 NAME_OF_FLOW = config('NAME_OF_FLOW')
-with Flow(config('NAME_OF_FLOW')) as flow:
+with Flow('git_flow') as flow:
     say_hello()
 
 flow.storage = GitHub(
