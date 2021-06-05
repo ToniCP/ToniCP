@@ -28,4 +28,4 @@ flow.storage = GitHub(
     path=os.getenv('REPOSITORY_PATH')
 )
 
-flow.run_config = LocalRun(labels=["test"])
+flow.run_config = LocalRun(labels=[os.getenv('AGENT_TAG')])
