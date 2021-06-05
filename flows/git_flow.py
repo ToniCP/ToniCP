@@ -9,6 +9,7 @@ from prefect.client.secrets import Secret
 from dotenv import load_dotenv
 
 load_dotenv()
+name_of_flow = 'git_flow'
 
 
 @task
@@ -19,8 +20,7 @@ def say_hello():
     logger.info("Accepted credentials.")
 
 
-name_of_flow = os.getenv('NAME_OF_FLOW')
-with Flow('git_flow') as flow:
+with Flow(name_of_flow) as flow:
     say_hello()
 
 flow.storage = GitHub(
