@@ -19,8 +19,8 @@ def say_hello():
     logger.info("Accepted credentials.")
 
 
-repository_path = os.getenv('REPOSITORY_PATH')
-with Flow(repository_path) as flow:
+name_of_flow = os.getenv('NAME_OF_FLOW')
+with Flow(name_of_flow) as flow:
     say_hello()
 
 flow.storage = GitHub(
