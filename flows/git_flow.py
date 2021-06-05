@@ -17,11 +17,12 @@ def say_hello():
     logger.info("Hello from prefect!")
 
 
-STORAGE = GitHub(
+with Flow("git_flow") as flow:
+    say_hello()
+
+flow.storage = GitHub(
     repo=os.getenv('REPOSITORY'),
-    path=os.getenv('PATH')
+    path="flows/git_flow.py"
 )
 
-with Flow(os.getenv('NAME_OF_FLOW_1'), storage=STORAGE,
-          run_config=LocalRun(labels=["test"])) as flow:
-    say_hello()
+flow.run_config = LocalRun(labels=["test"])
