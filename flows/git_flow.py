@@ -5,10 +5,6 @@ from prefect import task, Flow
 from prefect.storage import GitHub
 # pip install python-dotenv
 from prefect.run_configs import LocalRun
-from prefect.client.secrets import Secret
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 @task
@@ -19,13 +15,13 @@ def say_hello():
     logger.info("Accepted credentials.")
 
 
-name_of_flow = os.getenv('NAME_OF_FLOW')
-with Flow('git_flow') as flow:
+name_of_flow = os.environ['NAME_OF_FLOW']
+with Flow( name_of_flow ) as flow:
     say_hello()
 
 flow.storage = GitHub(
-    repo=os.getenv('REPOSITORY'),
-    path=os.getenv('REPOSITORY_PATH')
+    repo=os.environ['REPOSITORY'],
+    path=os.environ['REPOSITORY_PATH']
 )
 
 flow.run_config = LocalRun(labels=["test"])
