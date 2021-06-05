@@ -1,11 +1,10 @@
 import os
 import prefect
 from prefect import task, Flow
-# pip install 'prefect[gitlab]'
+# pip install 'prefect[github]' || pip install 'prefect[gitlab]'
 from prefect.storage import GitHub
 # pip install python-dotenv
 from prefect.run_configs import LocalRun
-from prefect.client.secrets import Secret
 from dotenv import load_dotenv
 
 load_dotenv()
