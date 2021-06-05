@@ -17,7 +17,7 @@ def say_hello():
     logger.info("Hello from prefect!")
 
 
-with Flow(os.getenv('NAME_OF_FLOW')) as flow:
+with Flow('git_flow') as flow:
     say_hello()
 
 flow.storage = GitHub(
