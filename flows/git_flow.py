@@ -15,6 +15,8 @@ load_dotenv()
 def say_hello():
     logger = prefect.context.get("logger")
     logger.info("Hello from prefect!")
+    logger.info("Recognized repository.")
+    logger.info("Accepted credentials.")
 
 
 repository_path = os.getenv('REPOSITORY_PATH')
